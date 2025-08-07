@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedido de Namoro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #noButton {
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-pink-100 h-screen flex flex-col items-center justify-center">
+  <div id="content" class="text-center">
+    <h1 class="text-4xl font-bold text-pink-600 mb-10">
+      Quer namorar comigo? 🥺👉👈
+    </h1>
+
+    <div class="flex gap-6 justify-center">
+      <button id="yesButton" class="bg-green-400 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full text-xl transition">
+        Sim 💖
+      </button>
+
+      <button id="noButton" class="bg-red-400 text-white font-bold py-3 px-6 rounded-full text-xl">
+        Não 💔
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const content = document.getElementById('content');
+
+    yesButton.addEventListener('click', () => {
+      content.innerHTML = `
+        <div class="bg-pink-200 text-pink-700 text-3xl font-bold p-10 rounded-xl">
+          { error: Esse coração já é meu }
+        </div>
+      `;
+    });
+
+    noButton.addEventListener('mouseenter', () => {
+      const buttonWidth = noButton.offsetWidth;
+      const buttonHeight = noButton.offsetHeight;
+      const pageWidth = window.innerWidth;
+      const pageHeight = window.innerHeight;
+
+      const maxX = pageWidth - buttonWidth - 20;
+      const maxY = pageHeight - buttonHeight - 20;
+
+      const newX = Math.floor(Math.random() * maxX);
+      const newY = Math.floor(Math.random() * maxY);
+
+      noButton.style.left = `${newX}px`;
+      noButton.style.top = `${newY}px`;
+    });
+  </script>
+</body>
+</html>
